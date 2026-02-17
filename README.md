@@ -108,7 +108,6 @@ This step is computationally intensive and may take several hours depending on y
 Hyperparameter optimization uses parallelization (`n_jobs = -1`).
 
 If you are only interested in reviewing results, this step can be skipped.
-
 Moreover, run training to generate artefacts locally (not tracked in git)
 ---
 
