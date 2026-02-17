@@ -1,16 +1,42 @@
-# ML Academic Project – End-to-End Pipeline
+# ML Academic Project – End-to-End Classification Pipeline
 
-## Overview
+## Project Overview
 
-This project implements a complete machine learning workflow, including:
+This project was developed as the final assignment for the **Introduction to Machine Learning** course.
 
-- Exploratory Data Analysis (EDA)
-- Feature selection
-- Hyperparameter tuning
-- Model training
-- Final evaluation and comparison
+The objective was to build the best possible classifier for a fully artificial dataset containing a mixture of informative and noisy features.  
+Model performance was evaluated using **Balanced Accuracy** on a hidden test set.
 
-The pipeline is designed to ensure reproducibility and clear separation between data preparation, training, and evaluation stages.
+A key challenge of this project was effective feature selection — separating pure noise from truly informative attributes.
+
+Although this was an academic assignment, the repository is structured to resemble a production-style ML pipeline.
+
+---
+
+## Final Results
+
+The final model achieved:
+
+**Balanced Accuracy: 0.912**
+
+This was one of the top results in the course cohort.
+
+---
+
+## Methodology
+
+The project follows a structured machine learning workflow:
+
+1. Exploratory Data Analysis (EDA)
+2. Feature selection
+3. Hyperparameter tuning
+4. Model training
+5. Final evaluation and comparison
+
+The pipeline is designed to ensure:
+- clear separation of responsibilities,
+- reproducibility,
+- prevention of data leakage.
 
 ---
 
@@ -28,7 +54,7 @@ Standard library modules used:
 - `json`
 - `pathlib (Path)`
 
-They do not require installation.
+No additional installation is required for them.
 
 ---
 
@@ -37,9 +63,8 @@ They do not require installation.
 ```
 .
 ├── data/              # Raw input data
-├── artefacts/         # Trained models, best hyperparameters, selected features
 ├── notebooks/
-│   ├── EDA.ipynb      # Data preprocessing + feature selection
+│   ├── EDA.ipynb      # Preprocessing + feature selection
 │   └── evaluation.ipynb
 ├── src/
 │   ├── Pipelines/     # Model definitions + hyperparameter search spaces
@@ -51,7 +76,7 @@ They do not require installation.
 
 ## Execution Workflow
 
-### Data Preparation & Feature Selection
+### 1️⃣ Data Preparation & Feature Selection
 
 Run:
 
@@ -60,16 +85,16 @@ notebooks/EDA.ipynb
 ```
 
 This step:
-- performs preprocessing
-- splits data into training and test sets
-- selects relevant features
-- saves artifacts
+- performs preprocessing,
+- splits the dataset into training and test sets,
+- selects relevant features,
+- persists intermediate results.
 
-This is a critical stage of the project.
+This is the most critical stage of the project.
 
 ---
 
-### Hyperparameter Tuning & Model Training (Optional)
+### 2️⃣ Hyperparameter Tuning & Model Training (Optional)
 
 Run training and tuning scripts from:
 
@@ -78,17 +103,15 @@ src/
 ```
 
 ⚠ **Warning:**  
-This step is computationally expensive and may take several hours depending on your hardware.
+This step is computationally intensive and may take several hours depending on your hardware.
 
-The tuning stage can use full CPU parallelization (`n_jobs = -1`).
+Hyperparameter optimization uses parallelization (`n_jobs = -1`).
 
-All results (trained models, best hyperparameters, selected variables) are already available in the `artefacts/` directory.
-
-If you only want to inspect results, you can skip this step.
+If you are only interested in reviewing results, this step can be skipped.
 
 ---
 
-### Final Evaluation
+### 3️⃣ Final Evaluation
 
 Run:
 
@@ -97,37 +120,24 @@ notebooks/evaluation.ipynb
 ```
 
 This notebook:
-- loads trained models
-- evaluates performance
-- compares results
-
----
-
-## Artifacts
-
-The `artefacts/` directory contains:
-
-- Trained models  
-- Best hyperparameters  
-- Selected features  
-- Evaluation outputs  
-
-This ensures reproducibility without rerunning the full tuning process.
+- loads trained models,
+- evaluates performance on the test set,
+- compares final results.
 
 ---
 
 ## Reproducibility Notes
 
 - Train/test split is performed during the EDA stage.
-- Selected features are persisted.
-- Hyperparameter tuning results are saved.
-- Evaluation is performed on a held-out test set.
+- Feature selection is saved and reused.
+- Hyperparameter tuning results are persisted.
+- Evaluation is performed on a strictly held-out test set.
 
 ---
 
-# Recommended Minimal Run
+## Recommended Minimal Run
 
-If you want to quickly review results:
+To quickly review the project:
 
 1. Run `EDA.ipynb`
 2. Run `evaluation.ipynb`
