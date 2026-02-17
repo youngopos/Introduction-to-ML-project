@@ -4,7 +4,7 @@ from pathlib import Path
 import warnings
 from optuna.exceptions import ExperimentalWarning
 
-from Pipelines.KNN import build_KNN_optuna
+from src.Pipelines.KNN import build_KNN_optuna
 
 from src.utils.data import read_train_data
 
@@ -22,6 +22,7 @@ def tuner(grid, X_tr, y_tr):
     return grid.best_params_
 
 def save_params(model_name: str, params: dict) -> None:
+    ARTEFACTS_DIR.mkdir(parents=True, exist_ok=True)
     if PARAMS_PATH.exists():
         with PARAMS_PATH.open('r', encoding='utf-8') as f:
             data = json.load(f)
