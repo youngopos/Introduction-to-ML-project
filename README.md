@@ -33,36 +33,24 @@ The project follows a structured machine learning workflow:
 4. Model training
 5. Final evaluation and comparison
 
-The pipeline is designed to ensure:
-- clear separation of responsibilities,
-- reproducibility,
-- prevention of data leakage.
-
 ---
 
 ## Requirements
 
-- Python 3.12+
-- numpy  
-- pandas  
-- scikit-learn  
-- optuna  
-- matplotlib  
-- joblib  
+- Python 3.10+
+- pip
 
-Standard library modules used:
-- `json`
-- `pathlib (Path)`
+## Installation
 
-No additional installation is required for them.
-
+```bash
+pip install -r requirements.txt
 ---
-
+```
 ## Project Structure
 
 ```
-.
-├── data/              # Raw input data
+├── data/              
+├── artefacts/         
 ├── notebooks/
 │   ├── EDA.ipynb      # Preprocessing + feature selection
 │   └── evaluation.ipynb
@@ -71,67 +59,12 @@ No additional installation is required for them.
 │   └── ...            # Training & tuning logic
 └── README.md
 ```
+## Pretrained Models
 
----
+Trained models are available in the GitHub Releases section:
 
-## Execution Workflow
-
-### 1️⃣ Data Preparation & Feature Selection
-
-Run:
-
-```
-notebooks/EDA.ipynb
-```
-
-This step:
-- performs preprocessing,
-- splits the dataset into training and test sets,
-- selects relevant features,
-- persists intermediate results.
-
-This is the most critical stage of the project.
-
----
-
-### 2️⃣ Hyperparameter Tuning & Model Training (Optional)
-
-Run training and tuning scripts from:
-
-```
-src/
-```
-
-⚠ **Warning:**  
-This step is computationally intensive and may take several hours depending on your hardware.
-
-Hyperparameter optimization uses parallelization (`n_jobs = -1`).
-If you are only interested in reviewing results, this step can be skipped.
-Moreover, run training to generate artefacts locally (not tracked in git)
-
----
-
-### 3️⃣ Final Evaluation
-
-Run:
-
-```
-notebooks/evaluation.ipynb
-```
-
-This notebook:
-- loads trained models,
-- evaluates performance on the test set,
-- compares final results.
-
----
-
-## Reproducibility Notes
-
-- Train/test split is performed during the EDA stage.
-- Feature selection is saved and reused.
-- Hyperparameter tuning results are persisted.
-- Evaluation is performed on a strictly held-out test set.
+https://github.com/youngopos/Introduction-to-ML-project/releases/tag/v1.0
+Download the `.joblib` files and place them in the `artefacts/` directory.
 
 ---
 
@@ -140,6 +73,7 @@ This notebook:
 To quickly review the project:
 
 1. Run `EDA.ipynb`
-2. Run `evaluation.ipynb`
+2. Make sure that the `.joblib` files from the release are placed in the artefacts directory.
+3. Run `evaluation.ipynb`
 
 No need to execute the full tuning pipeline.
