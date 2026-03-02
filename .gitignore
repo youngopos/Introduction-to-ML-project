@@ -1,6 +1,8 @@
 .venv/
 .idea/
 .env
+artefacts/*.joblib
+artefacts/*.txt
 __pycache__/
 *.pyc
 *.pyo
